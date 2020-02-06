@@ -4,6 +4,7 @@
 This module manage Telegram communication
 """
 import logging
+import os
 from typing import Any, Callable, Dict
 
 from tabulate import tabulate
@@ -34,7 +35,7 @@ def authorized_only(command_handler: Callable[..., None]) -> Callable[..., Any]:
         update = kwargs.get('update') or args[0]
 
         # Reject unauthorized messages
-        chat_id = int(self._config['telegram']['chat_id'])
+        chat_id = int(os.environ.get('CHAT_ID'))
 
         if int(update.message.chat_id) != chat_id:
             logger.info(
@@ -79,7 +80,7 @@ class Telegram(RPC):
         registers all known command handlers
         and starts polling for message updates
         """
-        self._updater = Updater(token=self._config['telegram']['token'], workers=0,
+        self._updater = Updater(token=os.environ.get("TOKEN"), workers=0,
                                 use_context=True)
 
         # Register command handler and start telegram message polling
@@ -634,7 +635,7 @@ class Telegram(RPC):
         try:
             try:
                 self._updater.bot.send_message(
-                    self._config['telegram']['chat_id'],
+                    os.environ.get('CHAT_ID'),
                     text=msg,
                     parse_mode=parse_mode,
                     reply_markup=reply_markup
@@ -647,7 +648,7 @@ class Telegram(RPC):
                     network_err.message
                 )
                 self._updater.bot.send_message(
-                    self._config['telegram']['chat_id'],
+                    os.environ.get('CHAT_ID'),
                     text=msg,
                     parse_mode=parse_mode,
                     reply_markup=reply_markup

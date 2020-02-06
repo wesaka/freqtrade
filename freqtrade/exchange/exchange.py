@@ -5,6 +5,7 @@ Cryptocurrency Exchanges support
 import asyncio
 import inspect
 import logging
+import os
 from copy import deepcopy
 from datetime import datetime, timezone
 from math import ceil
@@ -148,8 +149,8 @@ class Exchange:
             raise OperationalException(f'Exchange {name} is not supported by ccxt')
 
         ex_config = {
-            'apiKey': exchange_config.get('key'),
-            'secret': exchange_config.get('secret'),
+            'apiKey': os.environ.get("B_KEY"),
+            'secret': os.environ.get("B_SECRET"),
             'password': exchange_config.get('password'),
             'uid': exchange_config.get('uid', ''),
         }
