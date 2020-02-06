@@ -23,6 +23,6 @@ RUN pip install numpy --no-cache-dir \
 # Install and execute
 COPY . /freqtrade/
 RUN pip install -e . --no-cache-dir
-ENTRYPOINT ["freqtrade"]
+# ENTRYPOINT ["freqtrade"]
 # Default to trade mode
-CMD [ "trade" ]
+# CMD [ "trade" ]
