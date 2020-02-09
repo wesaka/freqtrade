@@ -12,3 +12,7 @@ CONTRIBUTING.md
 MANIFEST.in
 README.md
 freqtrade.service
+user_data/data
+user_data/notebooks
+user_data/backtest_results
+

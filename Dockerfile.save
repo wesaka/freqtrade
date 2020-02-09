@@ -23,7 +23,7 @@ RUN pip install numpy --no-cache-dir \
 # Install and execute
 COPY . /freqtrade/
 RUN pip install -e . --no-cache-dir
-# ENTRYPOINT [ "freqtrade" ]
+
 # Default to trade mode with strategy Quickie
-CMD python ./freqtrade/main.py trade -c config.json --strategy Quickie
+CMD trade -c config.json --strategy Quickie
 
