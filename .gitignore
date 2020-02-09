@@ -1,9 +1,10 @@
-# Freqtrade rules
+# Freqtrade rule
 config*.json
 *.sqlite
 logfile.txt
 user_data/*
 !user_data/strategy/sample_strategy.py
+!user_data/strategies
 !user_data/notebooks
 user_data/notebooks/*
 !user_data/notebooks/*example.ipynb
